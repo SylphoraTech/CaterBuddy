@@ -1,0 +1,266 @@
+General Styles
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Form Section */
+.form-group {
+    margin-bottom: 20px;
+}
+
+input, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    background: #007bff;
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Sections */
+.section {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Vendor List */
+.vendor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.vendor-item {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.vendor-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Vendor Title */
+.vendor-item strong {
+    font-size: 18px;
+    color: #343a40;
+}
+
+.vendor-item p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .vendor-list {
+        flex-direction: column;
+    }
+
+    .vendor-item {
+        width: 100%;
+    }
+}
+/* Centering Container */
+.container {
+    /* max-width: 900px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+    max-width: 900px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Centering */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Centering Form and Sections */
+.form-group,
+.section {
+    width: 100%;
+    max-width: 500px;  /* Adjust width */
+    text-align: center; /* Centers inline content */
+}
+
+/* Centering Buttons */
+button {
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Controls button width */
+    margin: 10px auto; /* Centers button */
+}
+
+/* Center Vendor List */
+.vendor-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers items */
+    gap: 20px;
+}
+
+/* Vendor Item */
+/* .vendor-item {
+    text-align: center;
+} */
+body {
+    position: relative;
+    background-image: url('https://www.shutterstock.com/image-photo/cooking-background-empty-mud-dish-600nw-2272204043.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for fading effect */
+    z-index: 1;
+}
+
+.navbar, .container {
+    position: relative;
+    z-index: 2; /* Ensures text is above the faded background */
+}
+
+/* .navbar { old css
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+} */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed; /* Fixes navbar at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.container {
+    color: white;
+    margin-top: 80px;
+    font-size: 22px;
+    font-weight: bold;
+}
+/*-------login and signup css----*/
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.login-container, .signup-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
