@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaterBuddy</title>
+    <meta name="description" content="Your Premium Catering Solution"/>
+    <meta name="author" content="CaterBuddy">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Satisfy&family=Lobster&display=swap');
+        body {
+            background-image: url('images/home_bg.jpg') ;
+            background-size:cover;
+            background-position: center;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 15px;
+            /* background: rgba(0, 0, 0, 0.7); */
+            border-radius: 10px;
+            position:absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            /* position:absolute; */
+            text-align: right;
+            right: 10%;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+        #content {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            width: auto;
+        }
+        h1 {
+            position:absolute;
+            top: 40%;
+            right: 10%;
+            font-size: 80px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: Dancing Script;
+            color: white;
+        }
+        p {
+            position:absolute;
+            top: 60%;
+            right: 10%;
+            font-size: 20px;
+            color: white;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(122, 60, 60, 0.2);
+            z-index: -2;
+        }
+        /* footer {
+            width: 110%;
+            font-size: smaller;
+            text-align: center;
+            color: white;
+            padding: 10px 0;
+            position: absolute;
+            bottom:0%;
+            left: 0;
+} */
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="download.html">Download</a>
+        <a href="client.html">Client</a>
+        <a href="vendor.html">Vendor</a> -->
+        <a href="login.html">Login</a>
+        <a href="signup.html">Signup</a>
+        <a href="contact.html">Contact</a>
+        
+    </nav>
+    
+    <div id="content">
+        <h1>Welcome to CaterBuddy</h1>
+        <p>Select a page from the navigation bar.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<!-- <footer>
+    <p>© 2025 CaterBuddy. All Rights Reserved.</p>
+</footer> -->
+</html>
