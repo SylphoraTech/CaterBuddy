@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard | CaterBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Satisfy&family=Lobster&display=swap');
+   
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/vendor_bg.jpg'); /* Update with actual image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        h2{
+            font-family: Dancing Script, cursive;
+            font-size: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h2>Welcome, Vendor!</h2>
+        
+        <!-- Vendor Info -->
+        <h3>Profile</h3>
+        <label>Email Address:</label>
+        <input type="email" id="email" placeholder="Enter your email">
+        <label>Contact Number:</label>
+        <input type="tel" id="contact" placeholder="Enter your contact number">
+
+        <!-- Item List -->
+        <h3>Manage Inventory</h3>
+        <form id="addItemForm">
+            <input type="text" id="itemName" placeholder="Item Name" required>
+            <input type="number" id="itemPrice" placeholder="Item Price" required>
+            <select id="itemAvailability">
+                <option value="Available">Available</option>
+                <option value="Out of Stock">Out of Stock</option>
+            </select>
+            <button type="submit">Add Item</button>
+        </form>
+        <ul id="itemList"></ul>
+
+        <!-- Orders Section -->
+        <h3>Orders</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Amount</th>
+                    <th>Delivery Date</th>
+                </tr>
+            </thead>
+            <tbody id="orderList">
+                <!-- Orders will be displayed here -->
+            </tbody>
+        </table>
+
+        <a href="index.html">Logout</a>
+    </div> 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addItemForm = document.getElementById("addItemForm");
+            const itemList = document.getElementById("itemList");
+            const orderList = document.getElementById("orderList");
+
+            // Sample Orders (Replace with real data from DB)
+            const orders = [
+                { itemName: "Rice", amount: 5, deliveryDate: "2025-02-15" },
+                { itemName: "Pulses", amount: 5, deliveryDate: "2025-02-20" }
+            ];
+
+            function displayOrders() {
+                orderList.innerHTML = "";
+                orders.forEach(order => {
+                    const row = `<tr>
+                        <td>${order.itemName}</td>
+                        <td>${order.amount}</td>
+                        <td>${order.deliveryDate}</td>
+                    </tr>`;
+                    orderList.innerHTML += row;
+                });
+            }
+
+            addItemForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const name = document.getElementById("itemName").value;
+                const price = document.getElementById("itemPrice").value;
+                const availability = document.getElementById("itemAvailability").value;
+
+                if (name && price) {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `${name} - ₹${price} (${availability}) <button onclick="removeItem(this)">Remove</button>`;
+                    itemList.appendChild(listItem);
+
+                    addItemForm.reset();
+                } else {
+                    alert("Please fill all item details.");
+                }
+            });
+
+            window.removeItem = function (btn) {
+                btn.parentElement.remove();
+            };
+
+            displayOrders();
+        });
+    </script>
+
+</body>
+</html>

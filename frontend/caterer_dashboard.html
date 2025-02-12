@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caterer Dashboard | CaterBuddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Satisfy&family=Lobster&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/caterer_bg.jpg'); /* Update with actual image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h2 {
+            font-family: Dancing Script, cursive;
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ff7f50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: #e67340;
+        }
+
+        /* Community Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            color: black;
+            background: #f1f1f1;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-content a:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome, Caterer!</h2>
+        
+
+        <!-- Community Dropdown -->
+        <div class="dropdown">
+            <a href="#">Community ▼</a>
+            <div class="dropdown-content">
+                <a href="gujarati.html">Gujarati</a>
+                <a href="maharashtra.html">Maharashtra</a>
+
+                
+            </div>
+            <a href="menu.html">Menu</a>
+                <a href="items.html">Items</a>
+                <a href="item_amount.html">Item Amount</a>
+                <a href="total_amount.html">Total Amount Per Item</a>
+                <a href="total_quantity.html">Total Quantity Per Item</a>
+        </div>
+
+        <a href="index.html">Logout</a>
+    </div>
+</body>
+</html>

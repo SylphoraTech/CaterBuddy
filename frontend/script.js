@@ -1,24 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Handle form submission
-//     document.getElementById("submitBtn").addEventListener("click", function () {
-//         alert("Form Submitted Successfully!");
-//     });
-
-//     // Sample vendor data (You can fetch from an API)
-//     const vendors = [
-//         { name: "Vendor A", amount: "$500", availability: "Available" },
-//         { name: "Vendor B", amount: "$700", availability: "Limited" }
-//     ];
-
-//     // Populate Vendor List
-//     let vendorList = document.getElementById("vendorList");
-//     vendors.forEach(vendor => {
-//         let vendorDiv = document.createElement("div");
-//         vendorDiv.classList.add("vendor-item");
-//         vendorDiv.innerHTML = `<strong>${vendor.name}</strong><p>Item Amount: ${vendor.amount}</p><p>Availability: ${vendor.availability}</p>`;
-//         vendorList.appendChild(vendorDiv);
-//     });
-// });
 document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll(".navbar a");
 
@@ -52,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             const role = document.getElementById("userRole").value;
             if (role === "vendor") {
-                window.location.href = "vendor-dashboard.html";
+                window.location.href = "vendor_dashboard.html";
             } else {
-                window.location.href = "caterer-dashboard.html";
+                window.location.href = "caterer_dashboard.html";
             }
         });
     }
@@ -62,18 +41,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if (signupForm) {
         signupForm.addEventListener("submit", function (event) {
             event.preventDefault();
+            
             alert("Signup successful! You can now login.");
             window.location.href = "login.html";
         });
     }
 });
 /*-----login-signup ------*/
-document.addEventListener("DOMContentLoaded", function () {
+
     const signupForm = document.querySelector("#signupForm");
     const loginForm = document.querySelector("#loginForm");
 
     if (signupForm) {
         signupForm.addEventListener("submit", function (event) {
+            
             event.preventDefault();
 
             const name = document.querySelector("#name").value;
@@ -100,12 +81,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const user = JSON.parse(localStorage.getItem(email));
 
-            if (user && user.password === password) {
+            if (userData && userData.password === password && userData.role === userRole) {
                 alert("Login successful!");
-                window.location.href = "index.html"; // Redirect to dashboard or home page
+            
+                // Redirect based on user role
+                if (userRole === "vendor") {
+                    window.location.href = "vendor_dashboard.html";
+                } else if (userRole === "caterer") {
+                    window.location.href = "caterer_dashboard.html";
+                }
             } else {
-                alert("Invalid email or password. Please try again.");
+                alert("Invalid email, password, or role. Please try again.");
             }
+            
+
+            // if (user && user.password === password) {
+            //     alert("Login successful!");
+            //     window.location.href = "index.html"; // Redirect to dashboard or home page
+            // } else {
+            //     alert("Invalid email or password. Please try again.");
+            // }
         });
     }
+// });
+/*-----redirect---*/
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault(); // Prevent actual form submission
+
+    let userRole = document.getElementById("userRole").value;
+
+    if (userRole === "vendor") {
+        window.location.href = "vendor_dashboard.html";
+    } else if (userRole === "caterer") {
+        window.location.href = "caterer_dashboard.html";
+    }
 });
+
