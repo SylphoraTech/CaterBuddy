@@ -9,25 +9,30 @@
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Satisfy&family=Lobster&display=swap');
         
         body {
+            background-image: url('images/caterer_bg.jpg'); /* Update with actual image */
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('images/caterer_bg.jpg'); /* Update with actual image */
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #f4f4f4;
         }
 
         .dashboard-container {
-            background: white;
+            background: #ffffff;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 400px;
+            width: 50%;
+            height: 85%;
+            max-width: 1000px;
         }
 
         h2 {
@@ -36,78 +41,115 @@
             margin-bottom: 20px;
         }
 
-        a {
-            display: block;
-            margin: 10px 0;
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
             padding: 10px;
-            background: #ff7f50;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #e0f7fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            border: 1px solid #0097a7;
+            flex: 1;
+            margin: 10px;
+            min-width: 200px;
+        }
+
+        .estimate-cost {
+            font-size: 24px;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            background: #00796b;
             color: white;
             text-decoration: none;
+            padding: 10px;
             border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
             transition: 0.3s;
         }
 
-        a:hover {
-            background: #e67340;
-        }
-
-        /* Community Dropdown */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            width: 100%;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            z-index: 1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 10px;
-            color: black;
-            background: #f1f1f1;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .dropdown-content a:hover {
-            background: #ddd;
+        .button:hover {
+            background: #004d40;
         }
     </style>
 </head>
 <body>
     <div class="dashboard-container">
         <h2>Welcome, Caterer!</h2>
-        
 
-        <!-- Community Dropdown -->
-        <div class="dropdown">
-            <a href="#">Community ▼</a>
-            <div class="dropdown-content">
-                <a href="gujarati.html">Gujarati</a>
-                <a href="maharashtra.html">Maharashtra</a>
-
-                
-            </div>
-            <a href="menu.html">Menu</a>
-                <a href="items.html">Items</a>
-                <a href="item_amount.html">Item Amount</a>
-                <a href="total_amount.html">Total Amount Per Item</a>
-                <a href="total_quantity.html">Total Quantity Per Item</a>
+        <div class="form-group">
+            <label for="community">Select Community</label>
+            <select id="community">
+                <option>Choose a community</option>
+                <option value="gujarati">Gujarati</option>
+                <option value="maharashtra">Maharashtra</option>
+            </select>
         </div>
 
-        <a href="index.html">Logout</a>
+        <div class="form-group">
+            <label for="guests">Estimate Guests</label>
+            <input type="number" id="guests" placeholder="Enter guest count">
+        </div>
+
+        <div class="info-container">
+            <div class="info-box">
+                <strong>Menu Suggestions</strong>
+                <p>Community-based menu recommendations tailored to your event.</p>
+                <p><strong>Menu Price:</strong> ₹5,000</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Ingredient List</strong>
+                <p>Calculated ingredients based on your menu and guest count.</p>
+                <p><strong>Ingredient Price:</strong> ₹3,000</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Item Amount</strong>
+                <p>Total cost of individual items.</p>
+                <p><strong>Item Amount:</strong> ₹2,000</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Total Amount</strong>
+                <p>Sum of all menu and ingredient costs.</p>
+                <p><strong>Total Amount:</strong> ₹30,000</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Total Quantity</strong>
+                <p>Estimated total quantity of ingredients needed.</p>
+                <p><strong>Total Quantity:</strong> 150kg</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="button">Logout</a>
     </div>
 </body>
 </html>
