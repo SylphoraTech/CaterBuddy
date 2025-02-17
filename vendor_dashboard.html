@@ -37,7 +37,7 @@
             border: 1px solid #ccc;
         }
         button {
-            background-color: #28a745;
+            background-color: #ff7f50;
             color: white;
             cursor: pointer;
         }
@@ -57,13 +57,31 @@
             font-family: Dancing Script, cursive;
             font-size: 40px;
         }
+        .logout-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 16px;
+        color:  #ff7f50;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+        color: black;
+        font-size: 18px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .logout-btn:hover {
+        color: #ff7f50;
+        border-radius: 5px;
         
+    }
     </style>
 </head>
 <body>
 
     <div class="dashboard-container">
-        <h2>Welcome, Vendor!</h2>
+        <h2>~ Welcome, Vendor ! ~</h2>
         
         <!-- Vendor Info -->
         <h3>Profile</h3>
@@ -100,8 +118,9 @@
             </tbody>
         </table>
 
-        <a href="index.html">Logout</a>
+      
     </div> 
+    <a href="index.html" class="logout-btn">Logout</a>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

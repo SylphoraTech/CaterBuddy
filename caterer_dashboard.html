@@ -7,16 +7,14 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Satisfy&family=Lobster&display=swap');
-        
+
         body {
-            background-image: url('images/caterer_bg.jpg'); /* Update with actual image */
+            background-image: url('images/caterer_bg.jpg'); 
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-size: cover;
-            background-position: center;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,21 +22,33 @@
             background-color: #f4f4f4;
         }
 
-        .dashboard-container {
-            background: #ffffff;
+        /* .dashboard-container {
+            background: #ff7f50;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 50%;
-            height: 85%;
-            max-width: 1000px;
+            height: 80%;
+            max-width: 1500px;
+        } */
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            /* max-width: 600px; */
+            text-align: center;
+            height: 80%;
+            max-width: 1500px;
         }
 
         h2 {
             font-family: Dancing Script, cursive;
-            font-size: 34px;
+            font-size: 3rem;
             margin-bottom: 20px;
+            color: ff7f50;
         }
 
         .form-group {
@@ -82,26 +92,42 @@
             font-weight: bold;
         }
 
-        .button {
-            display: inline-block;
-            background: #00796b;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 15px;
-            text-align: center;
-            transition: 0.3s;
+        .menu-item {
+            cursor: pointer;
+            color: #00796b;
+            font-weight: bold;
+            text-decoration: underline;
+            display: block;
+            margin: 5px 0;
         }
 
-        .button:hover {
-            background: #004d40;
-        }
+    /* Logout Button Styling */
+    .logout-btn {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 16px;
+        color:  #ff7f50;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+        color: black;
+        font-size: 18px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .logout-btn:hover {
+        color: #ff7f50;
+        border-radius: 5px;
+        
+    }
+</style>
+
     </style>
 </head>
 <body>
     <div class="dashboard-container">
-        <h2>Welcome, Caterer!</h2>
+        <h2>~ Welcome, Caterer ! ~</h2>
 
         <div class="form-group">
             <label for="community">Select Community</label>
@@ -120,36 +146,102 @@
         <div class="info-container">
             <div class="info-box">
                 <strong>Menu Suggestions</strong>
-                <p>Community-based menu recommendations tailored to your event.</p>
-                <p><strong>Menu Price:</strong> ₹5,000</p>
+                <span class="menu-item" onclick="updateDashboard('poha')">Poha</span>
+                <span class="menu-item" onclick="updateDashboard('idli')">Idli</span>
+                <span class="menu-item" onclick="updateDashboard('pavbhaji')">Pav Bhaji</span>
             </div>
 
             <div class="info-box">
                 <strong>Ingredient List</strong>
-                <p>Calculated ingredients based on your menu and guest count.</p>
-                <p><strong>Ingredient Price:</strong> ₹3,000</p>
+                <div id="ingredient-list">Click a menu item to see ingredients.</div>
             </div>
 
             <div class="info-box">
-                <strong>Item Amount</strong>
-                <p>Total cost of individual items.</p>
-                <p><strong>Item Amount:</strong> ₹2,000</p>
+                <strong>Item Amount (Cost per item)</strong>
+                <div id="item-cost">Click a menu item to see cost.</div>
             </div>
 
-            <div class="info-box">
-                <strong>Total Amount</strong>
-                <p>Sum of all menu and ingredient costs.</p>
-                <p><strong>Total Amount:</strong> ₹30,000</p>
-            </div>
+           
 
             <div class="info-box">
                 <strong>Total Quantity</strong>
-                <p>Estimated total quantity of ingredients needed.</p>
-                <p><strong>Total Quantity:</strong> 150kg</p>
+                <div id="total-quantity">Click a menu item to see quantity.</div>
+            </div>
+            <div class="info-box">
+                <strong>Total Amount</strong>
+                <p><strong>Total Cost:</strong> ₹<span id="total-cost">0</span></p>
             </div>
         </div>
 
-        <a href="index.html" class="button">Logout</a>
+        
     </div>
+                  <a href="index.html" class="logout-btn">Logout</a>
+    <script>
+        function updateDashboard(menuItem) {
+            const menuData = {
+                poha: {
+                    ingredients: [
+                        { name: "Poha", quantity: "1kg", cost: 50 },
+                        { name: "Onion", quantity: "500gm", cost: 20 },
+                        { name: "Mustard Seeds", quantity: "100gm", cost: 15 },
+                        { name: "Turmeric", quantity: "50gm", cost: 10 },
+                        { name: "Green Chilies", quantity: "200gm", cost: 30 },
+                        { name: "Curry Leaves", quantity: "100gm", cost: 10 }
+                    ]
+                },
+                idli: {
+                    ingredients: [
+                        { name: "Rice", quantity: "2kg", cost: 100 },
+                        { name: "Urad Dal", quantity: "500gm", cost: 50 },
+                        { name: "Fenugreek Seeds", quantity: "100gm", cost: 10 },
+                        { name: "Salt", quantity: "100gm", cost: 5 }
+                    ]
+                },
+                pavbhaji: {
+                    ingredients: [
+                        { name: "Pav", quantity: "10 pcs", cost: 40 },
+                        { name: "Potatoes", quantity: "1kg", cost: 30 },
+                        { name: "Tomatoes", quantity: "1kg", cost: 40 },
+                        { name: "Capsicum", quantity: "500gm", cost: 20 },
+                        { name: "Butter", quantity: "250gm", cost: 50 },
+                        { name: "Spices", quantity: "100gm", cost: 20 }
+                    ]
+                }
+            };
+
+            const selectedMenu = menuData[menuItem];
+
+            if (!selectedMenu) return;
+
+            // Update Ingredients List
+            let ingredientsHTML = "<ol>";
+            selectedMenu.ingredients.forEach(item => {
+                ingredientsHTML += `<li>${item.name} - ${item.quantity}</li>`;
+            });
+            ingredientsHTML += "</ol>";
+            document.getElementById("ingredient-list").innerHTML = ingredientsHTML;
+
+            // Update Item Cost
+            let itemCostHTML = "<ol>";
+            let totalCost = 0;
+            selectedMenu.ingredients.forEach(item => {
+                itemCostHTML += `<li>${item.name}: ₹${item.cost}</li>`;
+                totalCost += item.cost;
+            });
+            itemCostHTML += "</ol>";
+            document.getElementById("item-cost").innerHTML = itemCostHTML;
+
+            // Update Total Cost
+            document.getElementById("total-cost").innerHTML = totalCost;
+
+            // Update Total Quantity
+            let totalQuantityHTML = "<ol>";
+            selectedMenu.ingredients.forEach(item => {
+                totalQuantityHTML += `<li>${item.name}: ${item.quantity}</li>`;
+            });
+            totalQuantityHTML += "</ol>";
+            document.getElementById("total-quantity").innerHTML = totalQuantityHTML;
+        }
+    </script>
 </body>
 </html>
