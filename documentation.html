@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaterBuddy - Server Documentation</title>
+    <link rel="stylesheet" href="documentation.css">
+</head>
+<body>
+    <header>
+        <h1>CaterBuddy - Server Documentation</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#setup">Setup</a></li>
+            <li><a href="#structure">File Structure</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#api">API Endpoints</a></li>
+            <li><a href="#next">Next Steps</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="setup">
+            <h2>1. Server Setup</h2>
+            <p>The CaterBuddy server is built using Express.js and serves static files from the `frontend` folder.</p>
+        </section>
+
+        <section id="structure">
+            <h2>2. File Structure</h2>
+            <pre>
+            /caterbuddy
+            ├── frontend/
+            │   ├── index.html
+            │   ├── client.html
+            │   ├── register.html
+            │   ├── vendor.html
+            │   ├── script.js
+            │   ├── style.css
+            │   ├── documentation.html
+            │   ├── documentation.js
+            │   ├── documentation.css
+            ├── package.json
+            ├── node_modules/
+            </pre>
+        </section>
+
+        <section id="usage">
+            <h2>3. How to Run</h2>
+            <pre>
+            1. Install dependencies:
+               npm install express
+            2. Start the server:
+               node index.js
+            3. Open in browser:
+               http://localhost:3000
+            </pre>
+        </section>
+
+        <section id="features">
+            <h2>4. Features</h2>
+            <ul>
+                <li>Serves static files from `frontend/`</li>
+                <li>Handles GET requests to `/` and serves `index.html`</li>
+                <li>Supports multiple frontend pages like client, vendor, and register</li>
+                <li>Runs on port 3000</li>
+            </ul>
+        </section>
+
+        <section id="api">
+            <h2>5. API Endpoints</h2>
+            <pre>
+            GET /
+              - Serves the frontend `index.html`
+            
+            Static Files:
+              - The `frontend/` directory is exposed for serving static content.
+            </pre>
+        </section>
+
+        <section id="next">
+            <h2>6. Next Steps</h2>
+            <p>To extend functionality, you can add:</p>
+            <ul>
+                <li>API routes</li>
+                <li>Database integration</li>
+                <li>Middleware for request validation</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 CaterBuddy. All Rights Reserved.</p>
+    </footer>
+
+    <script src="documentation.js"></script>
+</body>
+</html>
