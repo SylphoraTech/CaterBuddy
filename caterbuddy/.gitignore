@@ -43,3 +43,34 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Ignore system & user directories
+/Application Data/
+/Cookies/
+/Local Settings/
+/My Documents/
+/NetHood/
+/PrintHood/
+/Recent/
+/SendTo/
+/Start Menu/
+/Templates/
+/AppData/
+/OneDrive/
+/Saved Games/
+/Searches/
+/Tracing/
+/Videos/
+/VirtualBox VMs/
+
+# Ignore node modules and package files
+/node_modules/
+/package-lock.json
+
+# Ignore IDE/Editor settings
+/.vscode/
+/.idea/
+/.eclipse-workspace/
+
+# Ignore system logs and temporary files
+*.log
+*.tmp
