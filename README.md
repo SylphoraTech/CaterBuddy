@@ -1,6 +1,10 @@
 # caterbuddy
 
 A new Flutter project.
+![Alt Text](Screenshot_20250228_003521.png)
+![Alt Text](Screenshot_20250228_003535.png)
+![Alt Text](Screenshot_20250228_003546.png)
+
 
 ## Getting Started
 
