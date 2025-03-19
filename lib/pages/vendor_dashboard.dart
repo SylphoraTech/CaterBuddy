@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'profile_page.dart'; // Import the Profile Page
+import 'profile_page.dart';
 
 class VendorDashboard extends StatelessWidget {
   const VendorDashboard({super.key});
@@ -8,20 +8,28 @@ class VendorDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Vendors'),
+        title: const Text('Vendors'),
         backgroundColor: Colors.orange,
         actions: [
           IconButton(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder:
                       (context) => ProfilePage(
-                        userName: "Akansha", // Replace with actual vendor data
+                        userName: "Akansha",
                         userEmail: "vendor@example.com",
-                        userAddress: " Bombay ", // Address added
+                        userAddress: "Bombay",
+                        gstNumber: "22AAAAA0000A1Z5",
+                        panNumber: "AAAAA0000A",
+                        savedAddresses: [
+                          "123, Street 1, Bombay",
+                          "456, Street 2, Bombay",
+                        ],
+                        price: 1500.0,
+                        menuItems: ["Pizza", "Pasta", "Burger"],
                       ),
                 ),
               );
@@ -29,19 +37,10 @@ class VendorDashboard extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                'Vendors Page - Coming Soon!',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(height: 20),
-          ],
+      body: const Center(
+        child: Text(
+          'Vendors Page - Coming Soon!',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );

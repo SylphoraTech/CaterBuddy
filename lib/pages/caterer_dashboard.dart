@@ -20,20 +20,20 @@ class CatererDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Caterer Dashboard'),
+        title: const Text('Caterer Dashboard'),
         backgroundColor: Colors.orange,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.person, color: Colors.white),
+            icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder:
-                      (context) => ProfilePage(
-                        userName: "Akansha",
-                        userEmail: "akansha@example.com",
+                      (context) => const ProfilePage(
+                        userName: "Akash",
+                        userEmail: "akash@example.com",
                         userAddress: "Bombay",
                       ),
                 ),
@@ -42,44 +42,17 @@ class CatererDashboard extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Address:',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text("123 Vendor Street, City, Country"),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            CaterBuddyHome(), // Now properly integrated
-          ],
-        ),
+        child: CaterBuddyHome(),
       ),
     );
   }
 }
 
 class CaterBuddyHome extends StatefulWidget {
+  const CaterBuddyHome({super.key});
+
   @override
   _CaterBuddyHomeState createState() => _CaterBuddyHomeState();
 }
@@ -106,7 +79,7 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           children: [
             Expanded(
@@ -114,7 +87,7 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
                 "Select Community",
                 DropdownButtonFormField<String>(
                   value: selectedCommunity,
-                  hint: Text("Choose a community"),
+                  hint: const Text("Choose a community"),
                   items:
                       communities.map((String community) {
                         return DropdownMenuItem(
@@ -130,13 +103,15 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
                 ),
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Expanded(
               child: _buildCard(
                 "Estimate Guests",
                 TextField(
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(hintText: "Enter guest count"),
+                  decoration: const InputDecoration(
+                    hintText: "Enter guest count",
+                  ),
                   onChanged: (value) {
                     setState(() {
                       guestCount = int.tryParse(value) ?? 20;
@@ -148,27 +123,27 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
             ),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           children: [
             Expanded(
               child: _buildCard(
                 "Menu Suggestions",
-                Text(
+                const Text(
                   "Community-based menu recommendations tailored to your event.",
                 ),
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Expanded(
               child: _buildCard(
                 "Ingredient List",
-                Text(
+                const Text(
                   "Calculated ingredients based on your menu and guest count.",
                 ),
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Expanded(
               child: _buildCard(
                 "Estimated Cost",
@@ -177,17 +152,19 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
                   children: [
                     Text(
                       "₹${estimatedCost.toStringAsFixed(0)}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8),
-                    Text("Total estimated cost based on menu and ingredients."),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
+                    const Text(
+                      "Total estimated cost based on menu and ingredients.",
+                    ),
+                    const SizedBox(height: 8),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text("Get Detailed Quote"),
+                      child: const Text("Get Detailed Quote"),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
                         foregroundColor: Colors.white,
@@ -208,15 +185,15 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       elevation: 2,
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             child,
           ],
         ),
