@@ -106,6 +106,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   google_fonts: ^6.1.0  # Add this package
+  supabase_flutter: ^2.8.4
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:

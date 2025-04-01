@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_page.dart';
 
 void main() {
   runApp(CaterBuddyApp());
@@ -7,36 +8,19 @@ void main() {
 class CaterBuddyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // For testing purposes, a dummy userId is provided here.
+    // In your production app, you should remove this main function and navigate from the login page.
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CatererDashboard(),
+      home: CatererDashboard(userId: 0),
     );
   }
 }
 
-class CatererDashboard extends StatefulWidget {
-  @override
-  _CatererDashboardState createState() => _CatererDashboardState();
-}
+class CatererDashboard extends StatelessWidget {
+  final int userId; // New required parameter
 
-class _CatererDashboardState extends State<CatererDashboard> {
-  String? selectedCommunity;
-  int? guestCount;
-  double estimatedCost = 0;
-  int currentStep = 0;
-
-  final List<String> communities = [
-    'Gujarati',
-    'Maharashtrian',
-    'Punjabi',
-    'South Indian',
-  ];
-
-  void nextStep() {
-    setState(() {
-      currentStep++;
-    });
-  }
+  const CatererDashboard({super.key, required this.userId});
 
   @override
   Widget build(BuildContext context) {
@@ -44,106 +28,133 @@ class _CatererDashboardState extends State<CatererDashboard> {
       appBar: AppBar(
         title: const Text('Caterer Dashboard'),
         backgroundColor: Colors.orange,
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(
+                    userName: "Akash",
+                    userEmail: "akash@example.com",
+                    userAddress: "Bombay",
+                    gstNumber: "22AAA AA0000A1Z5",
+                    panNumber: "AAA AA0000A",
+                    savedAddresses: ["123, Street 1, Bombay"],
+                    price: 2500.0,
+                    menuItems: ["Paneer Butter Masala", "Dal Makhani"],
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: CaterBuddyHome(),
+      ),
+    );
+  }
+}
+
+class CaterBuddyHome extends StatefulWidget {
+  const CaterBuddyHome({super.key});
+
+  @override
+  _CaterBuddyHomeState createState() => _CaterBuddyHomeState();
+}
+
+class _CaterBuddyHomeState extends State<CaterBuddyHome> {
+  String? selectedCommunity;
+  int guestCount = 20;
+  double estimatedCost = 25000;
+  final List<String> communities = [
+    'Gujarati',
+    'Maharashtrian',
+    'Punjabi',
+    'South Indian',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Center(
+          child: Text(
+            "Plan Your Perfect Catering Event",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Row(
           children: [
-            Center(
-              child: Text(
-                "Plan Your Perfect Catering Event",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Expanded(
+              child: _buildCard(
+                "Select Community",
+                DropdownButtonFormField<String>(
+                  value: selectedCommunity,
+                  hint: const Text("Choose a community"),
+                  items: communities.map((String community) {
+                    return DropdownMenuItem(
+                      value: community,
+                      child: Text(community),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedCommunity = value;
+                    });
+                  },
+                ),
               ),
             ),
-            const SizedBox(height: 20),
-
-            // Step 1: Select Community
-            if (currentStep == 0)
-              _buildCard(
-                "Select Community",
-                Column(
-                  children: [
-                    DropdownButtonFormField<String>(
-                      value: selectedCommunity,
-                      hint: const Text("Choose a community"),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                      items:
-                          communities.map((String community) {
-                            return DropdownMenuItem(
-                              value: community,
-                              child: Text(community),
-                            );
-                          }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedCommunity = value;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: selectedCommunity != null ? nextStep : null,
-                      child: const Text("Next"),
-                    ),
-                  ],
-                ),
-              ),
-
-            // Step 2: Enter Guest Count
-            if (currentStep == 1)
-              _buildCard(
+            const SizedBox(width: 16),
+            Expanded(
+              child: _buildCard(
                 "Estimate Guests",
-                Column(
-                  children: [
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Enter guest count",
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          guestCount = int.tryParse(value) ?? 20;
-                          estimatedCost = guestCount! * 1250;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: guestCount != null ? nextStep : null,
-                      child: const Text("Next"),
-                    ),
-                  ],
+                TextField(
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    hintText: "Enter guest count",
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      guestCount = int.tryParse(value) ?? 20;
+                      estimatedCost = guestCount * 1250;
+                    });
+                  },
                 ),
               ),
-
-            // Step 3: Show Menu & Ingredients
-            if (currentStep == 2)
-              Column(
-                children: [
-                  _buildCard(
-                    "Menu Suggestions",
-                    const Text("Community-based menu recommendations."),
-                  ),
-                  const SizedBox(height: 10),
-                  _buildCard(
-                    "Ingredient List",
-                    const Text("Calculated ingredients based on your menu."),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: nextStep,
-                    child: const Text("Next"),
-                  ),
-                ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Expanded(
+              child: _buildCard(
+                "Menu Suggestions",
+                const Text(
+                  "Community-based menu recommendations tailored to your event.",
+                ),
               ),
-
-            // Step 4: Show Estimated Cost
-            if (currentStep == 3)
-              _buildCard(
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _buildCard(
+                "Ingredient List",
+                const Text(
+                  "Calculated ingredients based on your menu and guest count.",
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _buildCard(
                 "Estimated Cost",
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,16 +182,17 @@ class _CatererDashboardState extends State<CatererDashboard> {
                   ],
                 ),
               ),
+            ),
           ],
         ),
-      ),
+      ],
     );
   }
 
   Widget _buildCard(String title, Widget child) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      elevation: 3,
+      elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
