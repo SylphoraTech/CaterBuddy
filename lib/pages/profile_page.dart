@@ -94,19 +94,24 @@ class _ProfilePageState extends State<ProfilePage> {
               _buildSectionTitle("Saved Addresses"),
               Column(
                 children:
-                    savedAddresses.map((address) {
-                      return Card(
-                        child: ListTile(
-                          title: Text(address),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              _deleteAddress(address);
-                            },
-                          ),
-                        ),
-                      );
-                    }).toList(),
+                    savedAddresses.isNotEmpty
+                        ? savedAddresses.map((address) {
+                          return Card(
+                            child: ListTile(
+                              title: Text(address),
+                              trailing: IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () {
+                                  _deleteAddress(address);
+                                },
+                              ),
+                            ),
+                          );
+                        }).toList()
+                        : [const Text("No saved addresses.")],
               ),
               const SizedBox(height: 10),
               ElevatedButton(
@@ -124,19 +129,24 @@ class _ProfilePageState extends State<ProfilePage> {
               _buildSectionTitle("Menu"),
               Column(
                 children:
-                    menuItems.map((item) {
-                      return Card(
-                        child: ListTile(
-                          title: Text(item),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () {
-                              _editMenuItem(item);
-                            },
-                          ),
-                        ),
-                      );
-                    }).toList(),
+                    menuItems.isNotEmpty
+                        ? menuItems.map((item) {
+                          return Card(
+                            child: ListTile(
+                              title: Text(item),
+                              trailing: IconButton(
+                                icon: const Icon(
+                                  Icons.edit,
+                                  color: Colors.blue,
+                                ),
+                                onPressed: () {
+                                  _editMenuItem(item);
+                                },
+                              ),
+                            ),
+                          );
+                        }).toList()
+                        : [const Text("No menu items available.")],
               ),
               const SizedBox(height: 20),
 
@@ -145,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) =>  HomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                     (route) => false,
                   );
                 },
@@ -232,7 +242,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (menuController.text.trim().isNotEmpty) {
                   setState(() {
                     int index = menuItems.indexOf(item);
-                    menuItems[index] = menuController.text.trim();
+                    if (index != -1) {
+                      menuItems[index] = menuController.text.trim();
+                    }
                   });
                   Navigator.pop(context);
                 }
