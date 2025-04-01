@@ -8,14 +8,20 @@ void main() {
 class CaterBuddyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // For testing purposes, a dummy userId is provided here.
+    // In your production app, you should remove this main function and navigate from the login page.
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CatererDashboard(),
+      home: CatererDashboard(userId: 0),
     );
   }
 }
 
 class CatererDashboard extends StatelessWidget {
+  final int userId; // New required parameter
+
+  const CatererDashboard({super.key, required this.userId});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +36,16 @@ class CatererDashboard extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder:
-                      (context) => const ProfilePage(
-                        userName: "Akash",
-                        userEmail: "akash@example.com",
-                        userAddress: "Bombay",
-                      ),
+                  builder: (context) => const ProfilePage(
+                    userName: "Akash",
+                    userEmail: "akash@example.com",
+                    userAddress: "Bombay",
+                    gstNumber: "22AAA AA0000A1Z5",
+                    panNumber: "AAA AA0000A",
+                    savedAddresses: ["123, Street 1, Bombay"],
+                    price: 2500.0,
+                    menuItems: ["Paneer Butter Masala", "Dal Makhani"],
+                  ),
                 ),
               );
             },
@@ -88,13 +98,12 @@ class _CaterBuddyHomeState extends State<CaterBuddyHome> {
                 DropdownButtonFormField<String>(
                   value: selectedCommunity,
                   hint: const Text("Choose a community"),
-                  items:
-                      communities.map((String community) {
-                        return DropdownMenuItem(
-                          value: community,
-                          child: Text(community),
-                        );
-                      }).toList(),
+                  items: communities.map((String community) {
+                    return DropdownMenuItem(
+                      value: community,
+                      child: Text(community),
+                    );
+                  }).toList(),
                   onChanged: (value) {
                     setState(() {
                       selectedCommunity = value;
